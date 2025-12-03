@@ -8,3 +8,9 @@ spring:
     password: postgres
     driver-class-name: org.postgresql.Driver
 
+---
+spring:
+  config.activate.on-profile: with-mtx
+cds:
+  multi-tenancy:
+    sidecar.url: http://localhost:4005/ # in production mode overwrite with the URL from mta.yaml

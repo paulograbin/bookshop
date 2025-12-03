@@ -1,2 +1,14 @@
 {
+  "profiles": [
+    "with-mtx-sidecar",
+    "java"
+  ],
+  "requires": {
+    "[production]": {
+      "multitenancy": true
+    },
+    "[with-mtx]": {
+      "multitenancy": true
+    }
+  }
 }
