@@ -1,6 +1,5 @@
 **/gen/
 **/edmx/
-schema*.sql
 default-env.json
 
 **/bin/
