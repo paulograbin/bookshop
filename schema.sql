@@ -1,87 +1,87 @@
 
 CREATE TABLE sap_capire_bookshop_Books (
-  createdAt TIMESTAMP_TEXT,
-  createdBy NVARCHAR(255),
-  modifiedAt TIMESTAMP_TEXT,
-  modifiedBy NVARCHAR(255),
+  createdAt TIMESTAMP,
+  createdBy VARCHAR(255),
+  modifiedAt TIMESTAMP,
+  modifiedBy VARCHAR(255),
   ID INTEGER NOT NULL,
-  title NVARCHAR(111),
-  descr NVARCHAR(1111),
+  title VARCHAR(111),
+  descr VARCHAR(1111),
   author_ID INTEGER,
   genre_ID INTEGER,
   stock INTEGER,
   price DECIMAL(9, 2),
-  currency_code NVARCHAR(3),
+  currency_code VARCHAR(3),
   PRIMARY KEY(ID)
 );
 
 CREATE TABLE sap_capire_bookshop_Authors (
-  createdAt TIMESTAMP_TEXT,
-  createdBy NVARCHAR(255),
-  modifiedAt TIMESTAMP_TEXT,
-  modifiedBy NVARCHAR(255),
+  createdAt TIMESTAMP,
+  createdBy VARCHAR(255),
+  modifiedAt TIMESTAMP,
+  modifiedBy VARCHAR(255),
   ID INTEGER NOT NULL,
-  name NVARCHAR(111),
+  name VARCHAR(111),
   PRIMARY KEY(ID)
 );
 
 CREATE TABLE sap_capire_bookshop_Genres (
-  name NVARCHAR(255),
-  descr NVARCHAR(1000),
+  name VARCHAR(255),
+  descr VARCHAR(1000),
   ID INTEGER NOT NULL,
   parent_ID INTEGER,
   PRIMARY KEY(ID)
 );
 
 CREATE TABLE sap_capire_bookshop_Genres_texts (
-  locale NVARCHAR(14) NOT NULL,
-  name NVARCHAR(255),
-  descr NVARCHAR(1000),
+  locale VARCHAR(14) NOT NULL,
+  name VARCHAR(255),
+  descr VARCHAR(1000),
   ID INTEGER NOT NULL,
   PRIMARY KEY(locale, ID)
 );
 
 CREATE TABLE sap_common_Currencies (
-  name NVARCHAR(255),
-  descr NVARCHAR(1000),
-  code NVARCHAR(3) NOT NULL,
-  symbol NVARCHAR(5),
+  name VARCHAR(255),
+  descr VARCHAR(1000),
+  code VARCHAR(3) NOT NULL,
+  symbol VARCHAR(5),
   minorUnit SMALLINT,
   PRIMARY KEY(code)
 );
 
 CREATE TABLE sap_common_Currencies_texts (
-  locale NVARCHAR(14) NOT NULL,
-  name NVARCHAR(255),
-  descr NVARCHAR(1000),
-  code NVARCHAR(3) NOT NULL,
+  locale VARCHAR(14) NOT NULL,
+  name VARCHAR(255),
+  descr VARCHAR(1000),
+  code VARCHAR(3) NOT NULL,
   PRIMARY KEY(locale, code)
 );
 
 CREATE TABLE sap_capire_bookshop_Books_texts (
-  locale NVARCHAR(14) NOT NULL,
+  locale VARCHAR(14) NOT NULL,
   ID INTEGER NOT NULL,
-  title NVARCHAR(111),
-  descr NVARCHAR(1111),
+  title VARCHAR(111),
+  descr VARCHAR(1111),
   PRIMARY KEY(locale, ID)
 );
 
 CREATE TABLE sap_capire_bookshop_Orders (
-  ID NVARCHAR(36) NOT NULL,
-  createdAt TIMESTAMP_TEXT,
-  createdBy NVARCHAR(255),
-  modifiedAt TIMESTAMP_TEXT,
-  modifiedBy NVARCHAR(255),
-  OrderNo NVARCHAR(255),
-  buyer NVARCHAR(255),
+  ID VARCHAR(36) NOT NULL,
+  createdAt TIMESTAMP,
+  createdBy VARCHAR(255),
+  modifiedAt TIMESTAMP,
+  modifiedBy VARCHAR(255),
+  OrderNo VARCHAR(255),
+  buyer VARCHAR(255),
   total DECIMAL(9, 2),
-  currency_code NVARCHAR(3),
+  currency_code VARCHAR(3),
   PRIMARY KEY(ID)
 );
 
 CREATE TABLE sap_capire_bookshop_OrderItems (
-  ID NVARCHAR(36) NOT NULL,
-  parent_ID NVARCHAR(36),
+  ID VARCHAR(36) NOT NULL,
+  parent_ID VARCHAR(36),
   book_ID INTEGER,
   quantity INTEGER,
   amount DECIMAL(9, 2),
@@ -89,80 +89,80 @@ CREATE TABLE sap_capire_bookshop_OrderItems (
 );
 
 CREATE TABLE DRAFT_DraftAdministrativeData (
-  DraftUUID NVARCHAR(36) NOT NULL,
-  CreationDateTime TIMESTAMP_TEXT,
-  CreatedByUser NVARCHAR(256),
-  CreatedByUserDescription NVARCHAR(256),
+  DraftUUID VARCHAR(36) NOT NULL,
+  CreationDateTime TIMESTAMP,
+  CreatedByUser VARCHAR(256),
+  CreatedByUserDescription VARCHAR(256),
   DraftIsCreatedByMe BOOLEAN,
-  LastChangeDateTime TIMESTAMP_TEXT,
-  LastChangedByUser NVARCHAR(256),
-  LastChangedByUserDescription NVARCHAR(256),
-  InProcessByUser NVARCHAR(256),
-  InProcessByUserDescription NVARCHAR(256),
+  LastChangeDateTime TIMESTAMP,
+  LastChangedByUser VARCHAR(256),
+  LastChangedByUserDescription VARCHAR(256),
+  InProcessByUser VARCHAR(256),
+  InProcessByUserDescription VARCHAR(256),
   DraftIsProcessedByMe BOOLEAN,
-  DraftMessages NCLOB,
+  DraftMessages TEXT,
   PRIMARY KEY(DraftUUID)
 );
 
 CREATE TABLE AdminService_Books_drafts (
-  createdAt TIMESTAMP_TEXT NULL,
-  createdBy NVARCHAR(255) NULL,
-  modifiedAt TIMESTAMP_TEXT NULL,
-  modifiedBy NVARCHAR(255) NULL,
+  createdAt TIMESTAMP NULL,
+  createdBy VARCHAR(255) NULL,
+  modifiedAt TIMESTAMP NULL,
+  modifiedBy VARCHAR(255) NULL,
   ID INTEGER NOT NULL,
-  title NVARCHAR(111) NULL,
-  descr NVARCHAR(1111) NULL,
+  title VARCHAR(111) NULL,
+  descr VARCHAR(1111) NULL,
   author_ID INTEGER NULL,
   genre_ID INTEGER NULL,
   stock INTEGER NULL,
   price DECIMAL(9, 2) NULL,
-  currency_code NVARCHAR(3) NULL,
+  currency_code VARCHAR(3) NULL,
   IsActiveEntity BOOLEAN,
   HasActiveEntity BOOLEAN,
   HasDraftEntity BOOLEAN,
-  DraftAdministrativeData_DraftUUID NVARCHAR(36) NOT NULL,
+  DraftAdministrativeData_DraftUUID VARCHAR(36) NOT NULL,
   PRIMARY KEY(ID)
 );
 
 CREATE TABLE AdminService_GenreHierarchy_drafts (
-  name NVARCHAR(255) NULL,
-  descr NVARCHAR(1000) NULL,
+  name VARCHAR(255) NULL,
+  descr VARCHAR(1000) NULL,
   ID INTEGER NOT NULL,
   parent_ID INTEGER NULL,
   IsActiveEntity BOOLEAN,
   HasActiveEntity BOOLEAN,
   HasDraftEntity BOOLEAN,
-  DraftAdministrativeData_DraftUUID NVARCHAR(36) NOT NULL,
+  DraftAdministrativeData_DraftUUID VARCHAR(36) NOT NULL,
   PRIMARY KEY(ID)
 );
 
 CREATE TABLE AdminService_Orders_drafts (
-  ID NVARCHAR(36) NOT NULL,
-  createdAt TIMESTAMP_TEXT NULL,
-  createdBy NVARCHAR(255) NULL,
-  modifiedAt TIMESTAMP_TEXT NULL,
-  modifiedBy NVARCHAR(255) NULL,
-  OrderNo NVARCHAR(255) NULL,
-  buyer NVARCHAR(255) NULL,
+  ID VARCHAR(36) NOT NULL,
+  createdAt TIMESTAMP NULL,
+  createdBy VARCHAR(255) NULL,
+  modifiedAt TIMESTAMP NULL,
+  modifiedBy VARCHAR(255) NULL,
+  OrderNo VARCHAR(255) NULL,
+  buyer VARCHAR(255) NULL,
   total DECIMAL(9, 2) NULL,
-  currency_code NVARCHAR(3) NULL,
+  currency_code VARCHAR(3) NULL,
   IsActiveEntity BOOLEAN,
   HasActiveEntity BOOLEAN,
   HasDraftEntity BOOLEAN,
-  DraftAdministrativeData_DraftUUID NVARCHAR(36) NOT NULL,
+  DraftAdministrativeData_DraftUUID VARCHAR(36) NOT NULL,
   PRIMARY KEY(ID)
 );
 
 CREATE TABLE AdminService_OrderItems_drafts (
-  ID NVARCHAR(36) NOT NULL,
-  parent_ID NVARCHAR(36) NULL,
+  ID VARCHAR(36) NOT NULL,
+  parent_ID VARCHAR(36) NULL,
   book_ID INTEGER NULL,
   quantity INTEGER NULL,
   amount DECIMAL(9, 2) NULL,
   IsActiveEntity BOOLEAN,
   HasActiveEntity BOOLEAN,
   HasDraftEntity BOOLEAN,
-  DraftAdministrativeData_DraftUUID NVARCHAR(36) NOT NULL,
+  DraftAdministrativeData_DraftUUID VARCHAR(36) NOT NULL,
   PRIMARY KEY(ID)
 );
 
@@ -308,14 +308,14 @@ CREATE VIEW localized_sap_capire_bookshop_Books AS SELECT
   L_0.stock,
   L_0.price,
   L_0.currency_code
-FROM (sap_capire_bookshop_Books AS L_0 LEFT JOIN sap_capire_bookshop_Books_texts AS localized_1 ON localized_1.ID = L_0.ID AND localized_1.locale = session_context( '$user.locale' ));
+FROM (sap_capire_bookshop_Books AS L_0 LEFT JOIN sap_capire_bookshop_Books_texts AS localized_1 ON localized_1.ID = L_0.ID AND localized_1.locale = current_setting('cap.locale'));
 
 CREATE VIEW localized_sap_capire_bookshop_Genres AS SELECT
   coalesce(localized_1.name, L_0.name) AS name,
   coalesce(localized_1.descr, L_0.descr) AS descr,
   L_0.ID,
   L_0.parent_ID
-FROM (sap_capire_bookshop_Genres AS L_0 LEFT JOIN sap_capire_bookshop_Genres_texts AS localized_1 ON localized_1.ID = L_0.ID AND localized_1.locale = session_context( '$user.locale' ));
+FROM (sap_capire_bookshop_Genres AS L_0 LEFT JOIN sap_capire_bookshop_Genres_texts AS localized_1 ON localized_1.ID = L_0.ID AND localized_1.locale = current_setting('cap.locale'));
 
 CREATE VIEW localized_sap_common_Currencies AS SELECT
   coalesce(localized_1.name, L_0.name) AS name,
@@ -323,7 +323,7 @@ CREATE VIEW localized_sap_common_Currencies AS SELECT
   L_0.code,
   L_0.symbol,
   L_0.minorUnit
-FROM (sap_common_Currencies AS L_0 LEFT JOIN sap_common_Currencies_texts AS localized_1 ON localized_1.code = L_0.code AND localized_1.locale = session_context( '$user.locale' ));
+FROM (sap_common_Currencies AS L_0 LEFT JOIN sap_common_Currencies_texts AS localized_1 ON localized_1.code = L_0.code AND localized_1.locale = current_setting('cap.locale'));
 
 CREATE VIEW AdminService_DraftAdministrativeData AS SELECT
   DraftAdministrativeData.DraftUUID,
