@@ -1,10 +1,12 @@
+namespace sap.capire.bookshop;
+
+
 using {
     Currency,
     managed,
     sap
 } from '@sap/cds/common';
 
-namespace sap.capire.bookshop;
 
 entity Books : managed {
     key ID       : Integer;
