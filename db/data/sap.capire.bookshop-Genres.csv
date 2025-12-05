@@ -1,1 +1,7 @@
 ID,parent_ID,name,descr
+001,,"Fiction","Fictional works including novels and short stories."
+002,,"Non-Fiction","Non-fictional works including biographies and essays."
+003,001,"Science Fiction","Fictional works based on scientific concepts and futuristic settings."
+004,001,"Fantasy","Fictional works featuring magical elements and fantastical worlds."
+005,002,"Biography","Non-fictional works detailing the life of a person."
+006,002,"Self-Help","Non-fictional works aimed at personal improvement and advice."
