@@ -1,28 +1,57 @@
 spring:
-#  cds:
-#    data-source.auto-config.enabled: false
+  profiles:
+    active: default, with-mtx
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
+    embedded-database-connection: none
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/
     username: postgres
     password: postgres
-    driver-class-name: org.postgresql.Driver
-  profiles:
-    active: postgres-docker, with-mtx
-
----
-spring:
-  config.activate.on-profile: with-mtx
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    generate-ddl: true
 cds:
   multi-tenancy:
-    sidecar.url: http://localhost:4005/ # in production mode overwrite with the URL from mta.yaml
-    mtxs.enabled: true
-  security.mock.users:
-    alice:
-      tenant: t1
-      roles: [ admin ]
-    bob:
-      tenant: t1
-      roles: [ cds.ExtensionDeveloper ]
-    erin:
-      tenant: t2
-      roles: [ admin, cds.ExtensionDeveloper ]
+    mtxs:
+      enabled: true
+    sidecar:
+      url: http://localhost:4005/
+  security:
+    mock:
+      users:
+        bob:
+          roles:
+            - cds.ExtensionDeveloper
+          tenant: t1
+        alice:
+          roles:
+            - admin
+          tenant: t1
+        erin:
+          roles:
+            - cds.ExtensionDeveloper
+            - admin
+          tenant: t2
+
+management:
+  endpoint:
+    health:
+      show-components: always
+      show-details: always
+      probes:
+        enabled: true
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+  health:
+    defaults:
+      ping:
+        enabled: true
+      db:
+        enabled: true
+      enabled: true
+
