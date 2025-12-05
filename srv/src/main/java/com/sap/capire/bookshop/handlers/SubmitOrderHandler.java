@@ -1,18 +1,18 @@
 package com.sap.capire.bookshop.handlers;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
+import cds.gen.catalogservice.Books;
+import cds.gen.catalogservice.Books_;
+import cds.gen.catalogservice.CatalogService_;
+import cds.gen.catalogservice.SubmitOrderContext;
 import com.sap.cds.ql.Select;
 import com.sap.cds.ql.Update;
 import com.sap.cds.services.handler.EventHandler;
 import com.sap.cds.services.handler.annotations.On;
 import com.sap.cds.services.handler.annotations.ServiceName;
 import com.sap.cds.services.persistence.PersistenceService;
-import cds.gen.catalogservice.Books;
-import cds.gen.catalogservice.Books_;
-import cds.gen.catalogservice.CatalogService_;
-import cds.gen.catalogservice.SubmitOrderContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 @Component
 @ServiceName(CatalogService_.CDS_NAME)
